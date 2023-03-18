@@ -1,24 +1,7 @@
 //@ts-nocheck
-import React, { useEffect, useReducer } from "react";
-import { useState } from "react";
-import useForm from '../../hooks/useForm.ts'
-
-interface AuthState {
-    validating: Boolean,
-    isValid: Boolean,
-    token: string | null,
-    username: string,
-    password: string
-}
-
-interface LoginPayload {
-    username: string,
-    password: string
-}
-
-type AuthAction =
-    | { type: 'logout' }
-    | { type: 'login', payload: LoginPayload }
+import React, { useEffect, useReducer, useState } from "react";
+import useForm from '../hooks/useForm.ts'
+import {AuthState, AuthAction} from '../import/interfaces.ts'
 
 const authReducer = (state: AuthState, action: AuthAction) => {
     switch (action.type) {
@@ -54,7 +37,7 @@ function LoginForm() {
     const login = (e: FormEvent<HTMLFormElement>) =>{
         const payload ={ username: state.username, password: state.password}
         e.preventDefault()
-        setTimeout(3000, dispatch({ type: 'login', payload }))
+        setTimeout(dispatch({ type: 'login', payload },3000))
     }
 
     const logout = (e: FormEvent<HTMLFormElement>) => {
@@ -70,6 +53,7 @@ function LoginForm() {
     return (
         <div>
             <form onSubmit={ login}>
+                <h2>Inicia sesion</h2>
                 <label>Username</label>
                 <input
                     type='text'
@@ -95,7 +79,7 @@ function LoginForm() {
             {/* {submitted && <h2> Validando credenciales...</h2>} */}
             { !isValid && <h1> Incorrect user or password! Try again</h1>}
             { token && isValid &&
-                <div>
+                <div className="response">
                    
                     <h1> Bienvenido {username}! </h1>
                     <input

@@ -1,6 +1,6 @@
 
 import './App.css';
-import LoginForm from './components/Login/LoginForm.tsx';
+import LoginForm from './components/LoginForm.tsx';
 
 function App() {
   return (
