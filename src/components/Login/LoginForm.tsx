@@ -46,7 +46,7 @@ const initialState: AuthState = {
     password: ''
 }
 
-function Reducer() {
+function LoginForm() {
     const [state, handleChange] = useForm(initialState)
     const [{ username, token, isValid }, dispatch] = useReducer(authReducer, initialState)
     //const [submitted, setSubmitted] = useState(false)
@@ -92,7 +92,7 @@ function Reducer() {
             <br/>
             <br />
             <br/>
-            {submitted && <h2> Validando credenciales...</h2>}
+            {/* {submitted && <h2> Validando credenciales...</h2>} */}
             { !isValid && <h1> Incorrect user or password! Try again</h1>}
             { token && isValid &&
                 <div>
@@ -111,4 +111,4 @@ function Reducer() {
     )
 }
 
-export default Reducer
+export default LoginForm
